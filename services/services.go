@@ -16,8 +16,10 @@ import (
 5. отметить выполнение
 */
 
+var filename string = "todo.json"
+
 func ReadTodo() ([]structure.Todo, error) {
-	cont, err := os.ReadFile("todo.json")
+	cont, err := os.ReadFile(filename)
 	if err != nil {
 		return nil, err
 	}
@@ -39,7 +41,7 @@ func WriteTodo(content []structure.Todo) error {
 		return fmt.Errorf("%s", errorJS)
 	}
 
-	errorWrite := os.WriteFile("todo.json", jsdata, 0644)
+	errorWrite := os.WriteFile(filename, jsdata, 0644)
 
 	if errorWrite != nil {
 		return fmt.Errorf("%s", errorWrite)
